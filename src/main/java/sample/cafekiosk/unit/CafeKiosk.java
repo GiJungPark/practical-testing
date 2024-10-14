@@ -23,6 +23,10 @@ public class CafeKiosk {
         beverages.clear();
     }
 
+    public List<Beverage> getBeverages() {
+        return beverages;
+    }
+
     public int calculateTotalPrice() {
         int totalPrice = 0;
 
