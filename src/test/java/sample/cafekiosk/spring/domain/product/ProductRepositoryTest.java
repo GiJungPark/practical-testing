@@ -66,4 +66,45 @@ class ProductRepositoryTest {
                   tuple("002", "카페라떼", HOLD)
                 );
     }
+    
+    @DisplayName("상품번호 리스트로 상품들을 조회한다.")
+    @Test
+    void findAllByProductNumberIn() {
+        // given
+        Product americano = Product.builder()
+                .productNumber("001")
+                .type(HANDMADE)
+                .sellingType(SELLING)
+                .productName("아메리카노")
+                .price(4000)
+                .build();
+
+        Product latte = Product.builder()
+                .productNumber("002")
+                .type(HANDMADE)
+                .sellingType(HOLD)
+                .productName("카페라떼")
+                .price(4500)
+                .build();
+
+        Product shavedIce = Product.builder()
+                .productNumber("003")
+                .type(HANDMADE)
+                .sellingType(STOP_SELLING)
+                .productName("팥빙수")
+                .price(7000)
+                .build();
+        productRepository.saveAll(List.of(americano, latte, shavedIce));
+
+        // when
+        List<Product> products = productRepository.findAllByProductNumberIn(List.of("001", "002"));
+
+        // then
+        assertThat(products).hasSize(2)
+                .extracting("productNumber", "productName", "sellingType")
+                .containsExactlyInAnyOrder(
+                        tuple("001", "아메리카노", SELLING),
+                        tuple("002", "카페라떼", HOLD)
+                );
+    }
 }
