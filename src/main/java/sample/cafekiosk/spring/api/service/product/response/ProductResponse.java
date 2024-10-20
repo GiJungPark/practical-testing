@@ -10,16 +10,16 @@ import sample.cafekiosk.spring.domain.product.ProductType;
 public class ProductResponse {
 
     private Long id;
-    private String productNo;
+    private String productNumber;
     private ProductType type;
     private ProductSellingType sellingType;
     private String productName;
     private int price;
 
     @Builder
-    private ProductResponse(Long id, String productNo, ProductType type, ProductSellingType sellingType, String productName, int price) {
+    private ProductResponse(Long id, String productNumber, ProductType type, ProductSellingType sellingType, String productName, int price) {
         this.id = id;
-        this.productNo = productNo;
+        this.productNumber = productNumber;
         this.type = type;
         this.sellingType = sellingType;
         this.productName = productName;
@@ -29,7 +29,7 @@ public class ProductResponse {
     public static ProductResponse of(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
-                .productNo(product.getProductNo())
+                .productNumber(product.getProductNumber())
                 .type(product.getType())
                 .sellingType(product.getSellingType())
                 .productName(product.getProductName())
