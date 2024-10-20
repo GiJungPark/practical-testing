@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sample.cafekiosk.spring.domain.BaseEntity;
@@ -30,4 +31,13 @@ public class Product extends BaseEntity {
     private String productName;
 
     private int price;
+
+    @Builder
+    public Product(String productNo, ProductType type, ProductSellingType sellingType, String productName, int price) {
+        this.productNo = productNo;
+        this.type = type;
+        this.sellingType = sellingType;
+        this.productName = productName;
+        this.price = price;
+    }
 }
