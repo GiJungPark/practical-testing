@@ -44,7 +44,7 @@ class OrderServiceTest {
                 .build();
 
         // when
-        OrderResponse orderResponse = orderService.createOrder(request);
+        OrderResponse orderResponse = orderService.createOrder(request, LocalDateTime.now());
 
         // then
         assertThat(orderResponse.getId()).isNotNull();
