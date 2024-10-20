@@ -36,15 +36,18 @@ public class Order extends BaseEntity {
 
     private int totalPrice;
 
-    private LocalDateTime registerDataTime;
+    private LocalDateTime registeredDataTime;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
-    private Order(List<Product> products, LocalDateTime registerDataTime) {
+    private Order(List<Product> products, LocalDateTime registeredDataTime) {
         this.orderStatus = OrderStatus.INIT;
         this.totalPrice = calculateTotalPrice(products);
-        this.registerDataTime = registerDataTime;
+        this.registeredDataTime = registeredDataTime;
+        this.orderProducts = products.stream()
+                .map(product -> new OrderProduct(this, product))
+                .toList();
     }
 
     private int calculateTotalPrice(List<Product> products) {
