@@ -12,8 +12,10 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import sample.cafekiosk.spring.domain.BaseEntity;
 import sample.cafekiosk.spring.domain.orderProduct.OrderProduct;
+import sample.cafekiosk.spring.domain.product.Product;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,4 +41,12 @@ public class Order extends BaseEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
+    private Order(List<Product> products) {
+        this.orderStatus = OrderStatus.INIT;
+        this.totalPrice = 0;
+    }
+
+    public static Order create(List<Product> products) {
+        return new Order(products);
+    }
 }
