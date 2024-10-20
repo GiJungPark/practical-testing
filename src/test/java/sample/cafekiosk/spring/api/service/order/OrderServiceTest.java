@@ -63,7 +63,7 @@ class OrderServiceTest {
 
     private Product createProduct(String productNo, ProductType type, int price) {
         return Product.builder()
-                .productNo(productNo)
+                .productNumber(productNo)
                 .type(type)
                 .productName("메뉴이름")
                 .sellingType(SELLING)
