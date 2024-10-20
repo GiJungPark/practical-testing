@@ -30,7 +30,7 @@ class ProductRepositoryTest {
     void findAllBySellingStatusIn() {
         // given
         Product americano = Product.builder()
-                .productNo("001")
+                .productNumber("001")
                 .type(HANDMADE)
                 .sellingType(SELLING)
                 .productName("아메리카노")
@@ -38,7 +38,7 @@ class ProductRepositoryTest {
                 .build();
 
         Product latte = Product.builder()
-                .productNo("002")
+                .productNumber("002")
                 .type(HANDMADE)
                 .sellingType(HOLD)
                 .productName("카페라떼")
@@ -46,7 +46,7 @@ class ProductRepositoryTest {
                 .build();
 
         Product shavedIce = Product.builder()
-                .productNo("003")
+                .productNumber("003")
                 .type(HANDMADE)
                 .sellingType(STOP_SELLING)
                 .productName("팥빙수")
@@ -60,7 +60,7 @@ class ProductRepositoryTest {
 
         // when
         assertThat(products).hasSize(2)
-                .extracting("productNo", "productName", "sellingType")
+                .extracting("productNumber", "productName", "sellingType")
                 .containsExactlyInAnyOrder(
                   tuple("001", "아메리카노", SELLING),
                   tuple("002", "카페라떼", HOLD)
