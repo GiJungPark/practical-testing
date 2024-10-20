@@ -43,7 +43,13 @@ public class Order extends BaseEntity {
 
     private Order(List<Product> products) {
         this.orderStatus = OrderStatus.INIT;
-        this.totalPrice = 0;
+        this.totalPrice = calculateTotalPrice(products);
+    }
+
+    private int calculateTotalPrice(List<Product> products) {
+        return products.stream()
+                .mapToInt(Product::getPrice)
+                .sum();
     }
 
     public static Order create(List<Product> products) {
