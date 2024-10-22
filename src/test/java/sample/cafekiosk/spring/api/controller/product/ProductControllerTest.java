@@ -102,7 +102,7 @@ class ProductControllerTest {
             .andExpect(jsonPath("$.code").value("400"))
             .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
             .andExpect(jsonPath("$.message").value("상품 판매 상태는 필수입니다."))
-            .andExpect(jsonPath("$.data").isEmpty() );
+            .andExpect(jsonPath("$.data").isEmpty());
     }
 
     @DisplayName("신규 상품을 등록할 때, 상품 이름은 필수 값이다.")
@@ -126,7 +126,7 @@ class ProductControllerTest {
             .andExpect(jsonPath("$.code").value("400"))
             .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
             .andExpect(jsonPath("$.message").value("상품 이름은 필수입니다."))
-            .andExpect(jsonPath("$.data").isEmpty() );
+            .andExpect(jsonPath("$.data").isEmpty());
     }
 
     @DisplayName("신규 상품을 등록할 때, 상품 가격은 양수여야 합니다.")
