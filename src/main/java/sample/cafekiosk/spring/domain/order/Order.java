@@ -41,6 +41,14 @@ public class Order extends BaseEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
+    public static Order create(List<Product> products, LocalDateTime registerDataTime) {
+        return new Order(products, registerDataTime);
+    }
+
+    public void completePayment() {
+        orderStatus = OrderStatus.PAYMENT_COMPLETED;
+    }
+
     private Order(List<Product> products, LocalDateTime registeredDataTime) {
         this.orderStatus = OrderStatus.INIT;
         this.totalPrice = calculateTotalPrice(products);
@@ -54,9 +62,5 @@ public class Order extends BaseEntity {
         return products.stream()
                 .mapToInt(Product::getPrice)
                 .sum();
-    }
-
-    public static Order create(List<Product> products, LocalDateTime registerDataTime) {
-        return new Order(products, registerDataTime);
     }
 }
